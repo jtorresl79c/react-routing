@@ -36,13 +36,15 @@ class App extends Component {
 
                 {/* Esta es otra forma, y en funcionamiento es como el Switch de toda la vida, y al igual que el if y el switch
                 aqui el orden importa si nosotros fuearamos a: '/products', '/posts' u '/admin' PERO '/' estuviera en primer lugar
-                SIEMPRE se imprimiria el componete Home, porque al funcionar igual que el Switch normal '/' seria la primera coincidencia
+                SIEMPRE se imprimiria el componente Home, porque al funcionar igual que el Switch normal '/' seria la primera coincidencia
                 y entonces no renderizaria mas para abajo */}
                 <div className="content">
                     <Switch>
                         <Route path="/products" component={Products} />
                         <Route path="/posts" component={Posts} />
                         <Route path="/admin" component={Dashboard} />
+                        {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
+                        al tag Route, cosa que difiere un poco con Vue en donde tenemos que establecer en <router-view>, aqui es mas parecido al vue-if siendo el path la condicion en este caso */}
                         <Route path="/" component={Home} />
                     </Switch>
                 </div>
