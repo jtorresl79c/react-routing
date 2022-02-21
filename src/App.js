@@ -40,7 +40,10 @@ class App extends Component {
                 y entonces no renderizaria mas para abajo */}
                 <div className="content">
                     <Switch>
-                        <Route path="/products" component={Products} />
+                        {/* Recordemos que en el Capitulo 4 vimos que podemos pasar props a un componente, podriamos hacer algo como esto: <Products sortBy='newest'/>,
+                        pero aqui no podemos hacer eso, porque especificamos en componente que queremos renderizar con la propiedad component={Componente}, pero si
+                        en vez de poner component usamos la propiedad render de la forma que se ve a continuacion podemos mandar props como siempre se ha hecho */}
+                        <Route path="/products" render={ props => <Products sortBy="newest" /> } />
                         <Route path="/posts" component={Posts} />
                         <Route path="/admin" component={Dashboard} />
                         {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
