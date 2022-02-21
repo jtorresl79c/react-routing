@@ -43,7 +43,20 @@ class App extends Component {
                         {/* Recordemos que en el Capitulo 4 vimos que podemos pasar props a un componente, podriamos hacer algo como esto: <Products sortBy='newest'/>,
                         pero aqui no podemos hacer eso, porque especificamos en componente que queremos renderizar con la propiedad component={Componente}, pero si
                         en vez de poner component usamos la propiedad render de la forma que se ve a continuacion podemos mandar props como siempre se ha hecho */}
-                        <Route path="/products" render={ props => <Products sortBy="newest" /> } />
+                        {/* <Route path="/products" render={ () => <Products sortBy="newest"/> } /> El problema de esta sintaxis es que, en los ejemplos de
+                        abajo en donde usamos el atributo 'component' en vez del atributo 'render' se envian 2 props de forma automatica al componente
+                        renderizado llamados history, location y match, estos props (que podriamos necesitar mas adelante) se pierden */}
+                        <Route path="/products" render={ props => <Products sortBy="newest" {...props} /> } /> { /** Para enviar los props que hacen falta y se perdieron, 
+                         declaramos en la funcion el argumento 'props', despues debemos de usar el spread operator y poner {...props} de esta forma se estaran enviando los props
+                         faltantes (Usa React developers tools y busca el componente 'Products' al mirar sus props veremos de los props de los que estamos hablando) */ }
+
+                         
+
+
+
+                        
+
+
                         <Route path="/posts" component={Posts} />
                         <Route path="/admin" component={Dashboard} />
                         {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
