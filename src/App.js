@@ -40,21 +40,27 @@ class App extends Component {
                 y entonces no renderizaria mas para abajo */}
                 <div className="content">
                     <Switch>
+                        {/* Repasando la teoria de renderizado de mas abajo (con la analogia al v-if), para renderizar el componente 'ProductDetails' aqui estamos indicando
+                        que la url debe de seguir la forma '/products/:id' que se puede traducir en: /products/1, /products/2, /products/3, algo que notamos es que el switch
+                        no funciona como el LIKE '%%' al menos no al 100%, ya que si nosotros vamos a to='/products' se renderizara el componente <Products/> Y NO EL COMPONENT
+                        <ProductDetails/>, por lo que encontramos que por lo general el switch funciona como un === EXCEPTO por el path="/" en donde si tiene que ir al ultimo */}
+                        <Route path="/products/:id" component={ProductDetails} />
+
                         {/* Recordemos que en el Capitulo 4 vimos que podemos pasar props a un componente, podriamos hacer algo como esto: <Products sortBy='newest'/>,
                         pero aqui no podemos hacer eso, porque especificamos en componente que queremos renderizar con la propiedad component={Componente}, pero si
                         en vez de poner component usamos la propiedad render de la forma que se ve a continuacion podemos mandar props como siempre se ha hecho */}
                         {/* <Route path="/products" render={ () => <Products sortBy="newest"/> } /> El problema de esta sintaxis es que, en los ejemplos de
                         abajo en donde usamos el atributo 'component' en vez del atributo 'render' se envian 2 props de forma automatica al componente
                         renderizado llamados history, location y match, estos props (que podriamos necesitar mas adelante) se pierden */}
-                        <Route path="/products" render={ props => <Products sortBy="newest" {...props} /> } /> { /** Para enviar los props que hacen falta y se perdieron, 
+                        <Route path="/products" render={props => <Products sortBy="newest" {...props} />} /> { /** Para enviar los props que hacen falta y se perdieron, 
                          declaramos en la funcion el argumento 'props', despues debemos de usar el spread operator y poner {...props} de esta forma se estaran enviando los props
                          faltantes (Usa React developers tools y busca el componente 'Products' al mirar sus props veremos de los props de los que estamos hablando) */ }
 
-                         
-
-
 
                         
+
+
+
 
 
                         <Route path="/posts" component={Posts} />
