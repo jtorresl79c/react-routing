@@ -67,8 +67,11 @@ class App extends Component {
                         esa forma (un ejemplo seria '/posts/2018' sin el mes) el 'Switch' no renderizara <Posts/>, si no que renderizara 'Home' esto para porque ya que no encontrara una url con LA MISMA FORMA '/posts/:year/:month'
                         y si bien '/' tampoco es que se parezca mucho, si es cierto que es lo mas parecido a '/posts/2018' disponible dentro del switch, aqui vemos que al poner '/' hasta abajo del Switch
                         este actua como el 'default' de una sentencia 'Switch' normal. */}
-                        <Route path="/posts/:year/:month" component={Posts} />
-
+                        {/* <Route path="/posts/:year/:month" component={Posts} /> */}
+                        <Route path="/posts/:year/:month?" component={Posts} /> {/* De acuerdo a lo de arriba, :year y :month son parametros OBLIGATORIOS por default, pero podemos
+                        hacer que sean parametros OPCIONALES, para esto basta con agregar el signo '?' al final del parametro como se ve en la linea de arriba,  utilizando el mismo ejemplo
+                        de arriba en el url ponemos '/posts/2018' ahora en vez de llevarnos a <Home/> nos seguira llevando a <Post/> todo gracias a que ahora el parametro es opcional*/}
+                        
 
 
 
