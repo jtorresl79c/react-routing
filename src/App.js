@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./components/navbar";
 import Products from "./components/products";
 import Posts from "./components/posts";
@@ -71,7 +71,7 @@ class App extends Component {
                         <Route path="/posts/:year/:month?" component={Posts} /> {/* De acuerdo a lo de arriba, :year y :month son parametros OBLIGATORIOS por default, pero podemos
                         hacer que sean parametros OPCIONALES, para esto basta con agregar el signo '?' al final del parametro como se ve en la linea de arriba,  utilizando el mismo ejemplo
                         de arriba en el url ponemos '/posts/2018' ahora en vez de llevarnos a <Home/> nos seguira llevando a <Post/> todo gracias a que ahora el parametro es opcional*/}
-                        
+
 
 
 
@@ -84,7 +84,31 @@ class App extends Component {
                         <Route path="/admin" component={Dashboard} />
                         {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
                         al tag Route, cosa que difiere un poco con Vue en donde tenemos que establecer en <router-view>, aqui es mas parecido al vue-if siendo el path la condicion en este caso */}
-                        <Route path="/" component={Home} />
+
+
+
+
+
+
+
+
+                        <Route path="/not-found" component={NotFound} /> {/* RNF125 */} 
+                        {/* Aqui con este tag Route renderizamos el componente <NotFound/> */}
+
+                        <Redirect from="/messages" to="/posts/2018"/>
+                        {/* Otro ejemplo de Redirect es este, en donde especificamos un path especifico y lo reedireccionamos a donde queramos */}
+
+                        <Route path="/" exact component={Home} />
+                        {/* Sin poner el exact, cuando nosotros naveguemos a un ruta que no existe por default se muestra el componente <Home/> (porque su ruta por default es /), PERO al poner
+                        el atributo 'exact' si nosotros ponemos una url no existente la situacion recien comentada (que si ponemos una url inexistente por default se renderiza <Home/>) ya no pasara,
+                        ahora al poner una url inexistente NO SE RENDERIZARA NADA EN PANTALLA
+                        */}
+
+                        <Redirect to="/not-found" />
+                        {/* Ahora como el path '/' tiene el atributo exact, el Switch no renderizara, por lo que no le quedara mas de otra que ejecutar este tag <Redirect>, 
+                        el switch reedireccionara a la ruta '/not-found' RNF125 , notemos como se juega con esto, NO RENDERIZAMOS un componentente en esta linea, si no que
+                        reedireccionamos y un componente <Route/> normal se hace cargo del renderizado
+                        */}
                     </Switch>
                 </div>
 
