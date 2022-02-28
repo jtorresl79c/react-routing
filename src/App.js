@@ -57,13 +57,27 @@ class App extends Component {
                          faltantes (Usa React developers tools y busca el componente 'Products' al mirar sus props veremos de los props de los que estamos hablando) */ }
 
 
-                        
 
 
 
 
 
-                        <Route path="/posts" component={Posts} />
+                        {/* <Route path="/posts/" component={Posts} /> */}
+                        {/* --RPPYM-- Al poner este path (:year/:month), ahora quiere decir que para renderizar Posts se necesita poner una url con la forma: '/posts/2012/02' si no se pone de
+                        esa forma (un ejemplo seria '/posts/2018' sin el mes) el 'Switch' no renderizara <Posts/>, si no que renderizara 'Home' esto para porque ya que no encontrara una url con LA MISMA FORMA '/posts/:year/:month'
+                        y si bien '/' tampoco es que se parezca mucho, si es cierto que es lo mas parecido a '/posts/2018' disponible dentro del switch, aqui vemos que al poner '/' hasta abajo del Switch
+                        este actua como el 'default' de una sentencia 'Switch' normal. */}
+                        <Route path="/posts/:year/:month" component={Posts} />
+
+
+
+
+
+
+
+
+
+
                         <Route path="/admin" component={Dashboard} />
                         {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
                         al tag Route, cosa que difiere un poco con Vue en donde tenemos que establecer en <router-view>, aqui es mas parecido al vue-if siendo el path la condicion en este caso */}
