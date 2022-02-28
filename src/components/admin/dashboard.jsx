@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Route, Switch} from "react-router-dom";
 import Users from './users';
 import Posts from './posts';
+import Sidebar from "./sidebar";
 
 // El tema es parecido a un <route-view/> dentro de otro <route-view/> (Nesting Routes) de Vue, de hecho es lo mismo
 // aunque logicamente la forma en la que se escribe es diferente, pero los dos tratan el mismo tema, como vemos abajo
@@ -16,15 +16,9 @@ const Dashboard = ({ match }) => {
     <div>
       <h1>Admin Dashboard</h1>
 
-      <ul>
-        <li>
-          <Link to="/admin/users">Users</Link>
-        </li>
-        <li>
-          <Link to="/admin/posts">Posts</Link>
-        </li>
-      </ul>
+      <Sidebar/>
 
+      {/* Si solo ponemos en la ruta '/admin' pues ninguno de estos dos componentes se renderizara */}
       <Route path="/admin/users" component={Users} />
       <Route path="/admin/posts" component={Posts} />
 
