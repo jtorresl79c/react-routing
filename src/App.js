@@ -79,9 +79,9 @@ class App extends Component {
 
 
 
-
-
-                        <Route path="/admin" component={Dashboard} />
+                        
+                        
+                        <Route path="/admin" component={Dashboard} /> {/* RAD68478 */}
                         {/* El tag Route es como un v-if de vue, si el path coincide con la url escrita en la barra de direcciones entonces se renderiza el componente asosiado
                         al tag Route, cosa que difiere un poco con Vue en donde tenemos que establecer en <router-view>, aqui es mas parecido al vue-if siendo el path la condicion en este caso */}
 
